@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Track</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/Annexe_css.css">
+    </head>
+    <body>
+        <div class="nav-bar">
+            <div class = "logo">
+               <img src="{{ url_for('static',filename = 'rec/DS.png')}}" alt="DS">
+               <p>Into the wild of data science</p>
+            </div>
+            <span>Version 1.0</span>
+         </div>
+                 <!-- bs-example-navbar-collapse-1 -->
+              <div id="wrapper">
+                 <!-- Sidebar -->
+                 <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+                       <div class="profil">
+                           <i class="fa-solid fa-user"></i>
+                           <span>Achraf faytout</span>
+                       </div>
+                       <li class="active">
+                          <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa-solid fa-house"></i></span> Home</a>
+                          <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                          </ul>
+                       </li>
+                       <li>
+                          <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa-solid fa-broom"></i></span>Data Cleaning</a>
+                          <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                             <li><a href="#">Missing Values</a></li>
+                             <li><a href="#">Noisy data</a></li>
+                          </ul>
+                       </li>
+                       <li>
+                          <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa-solid fa-arrow-trend-down"></i></span>Data Reduction</a>
+                       </li>
+                       <li>
+                          <a href="#"> <span class="fa-stack fa-lg pull-left"><i class="fa-solid fa-shuffle"></i></span>Data transformation</a>
+                       </li>
+                       <li>
+                          <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa-solid fa-binoculars"></i></span>Overview</a>
+                       </li>
+                       <li>
+                          <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa-solid fa-brain"></i></span>ML model</a>
+                       </li>
+                       <li>
+                          <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa-solid fa-right-from-bracket"></i></span>LogOut</a>
+                       </li>
+                    </ul>
+                 </div>
+      
+                 <div id="page-content-wrapper">
+                    <div class="container-fluid xyz">
+                       <div class="row">
+                          <div class="col-lg-12">
+                             
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+        <!-- New items here -->
+        
+        <!-- End new items -->
+        <div class="content-aside">
+        <div class="title-1">
+            <h1>Data Description</h1>
+            <p>Data set sous forme d'un tableau pour visualiser clairement les données.</p>
+        </div>
+        <div class="all-table">
+            <table class = "table">
+                <thead class="table-light">
+                    <tr>
+                        {% for i in Rows[0].keys() %}
+                        <th scope="col">{{i}}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in Rows %}
+                        <tr>
+                            {% for i in row.keys() %}
+                            <td>{{row[i]}}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
+        <!--Script bootstrap-->
+        <script src="../static/Annexe_js.js"></script>
+    </body>
+</html>
