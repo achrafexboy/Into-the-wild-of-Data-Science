@@ -1,4 +1,4 @@
-# <span style = "color : green; font-family : 'Sofia Pro';"Into the wild of Data Science</span>
+# <span style = "color : green; font-family : 'Sofia Pro';">Into the wild of Data Science</span>
 project of the second semester (Data preprocessing)
 
 Please note that :
