@@ -3,7 +3,7 @@
 > <span style="color:lightblue;font-family : 'Sofia Pro';">Please note that :<span>
 > ### /env folder isn't published, so you need to create your own virtualenv.
 </div>
-Avancement : 
+Avancement : <br>
   _ Login/Register <br>
   _ Data manipulation : <br>
     _ ( visualisation )
