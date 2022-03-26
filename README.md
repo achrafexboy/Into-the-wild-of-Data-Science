@@ -4,5 +4,6 @@
 > ### /env folder isn't published, so you need to create your own virtualenv.
 </div>
 Avancement : 
-  _ Login/Register
-  _ Data manipulation (### visualisation)
+  _ Login/Register <br>
+  _ Data manipulation : <br>
+    _ ### visualisation
