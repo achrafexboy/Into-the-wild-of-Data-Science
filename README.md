@@ -6,4 +6,5 @@
 Avancement : <br>
   _ Login/Register <br>
   _ Data manipulation : <br>
-    _ ( visualisation )
+    _ ( visualisation )<br>
+  Thank you
