@@ -2,7 +2,7 @@
 from json import load
 import sqlite3
 from flask import render_template, Flask, redirect, url_for, request, make_response, abort
-
+from ai import resultDict, MissingValues, methode_chosing, df
 app = Flask(__name__)
 
 @app.route('/login')
@@ -54,6 +54,19 @@ def annexe():
       rows = [dict(row) for row in c.fetchall()]
       db.commit()
       return render_template('Annexe.html', Rows = rows)
+
+@app.route('/missingValues', methods=["POST", "GET"])
+def missingValues():
+    if request.method == 'POST':
+        methode = request.form.get("methode")
+        rate = float(request.form.get("rate"))
+        print("methode: ", methode)
+        print("rate: ", rate)
+        classTest = MissingValues(df, methode, rate)
+        new_df = methode_chosing(classTest)
+        return render_template('missingValues.html', results = resultDict, finalResult = new_df.isnull().mean().to_dict())
+    return render_template('missingValues.html', results = resultDict)
+
 
 if __name__ == "__main__" :
     app.run(debug=True)
