@@ -5,6 +5,11 @@ from flask import render_template, Flask, redirect, url_for, request, make_respo
 from ai import resultDict, MissingValues, methode_chosing, df
 app = Flask(__name__)
 
+@app.route('/index')
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/login')
 def login():
     rep = make_response(render_template('login.html'))
@@ -23,9 +28,7 @@ def succ():
           return redirect(url_for('login'))
     return redirect(url_for('annexe'))
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+
 
 @app.route('/register')
 def register():

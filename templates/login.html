@@ -2,37 +2,53 @@
     <html>
         <head>
             <meta charset="utf-8">
-            <link rel="stylesheet" href="../static/style.css" type="text/css">
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+            <link rel="stylesheet" href="../static/styleIn.css" type="text/css">
             <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Montserrat:ital@1&display=swap" rel="stylesheet">
         </head>
         <body>
             <!--our first div included : logo(DS) and paragraph-->
-            <div class="nav-bar">
-                <div class="logo">
-                    <img src="{{ url_for('static',filename = 'rec/LogoDS.png')}}" alt="logo">
-                    <p>ENSAM-Meknes</p>
+            <div class="theContainer">
+                <header class="header">
+                    <div class="logoContainer">
+                        <a href="{{ url_for('index') }}"><h1 class="logo">LoGo.</h1></a>
+                    </div>
+                    <nav class="navBarContainer">
+                        <ul class="navBar">
+                            <li class="underLine"><a href="#home" class="navBarElement">Home</a></li>
+                            <li class="underLine"><a href="#about" class="navBarElement">About</a></li>
+                            <li class="underLine"><a href="#contact" class="navBarElement">Contact</a></li>
+                            <li class="underLine"><a href="{{ url_for('login') }}" class="navBarElement">Login</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                <div class="form-login">
+                    <div class="formContainer">
+                        <h1 class="text-center">Welcome back !</h1>
+                        <br>
+                        <br>
+                        <form action="/login" class="form-signin loginForm" method="POST">
+                            <div class="inputContainer">
+                                <input type="email" placeholder="E-mail adresse" class="form-control userNameInput input" name="email">
+                            </div>
+                            <div class="inputContainer">
+                                <input type="password" placeholder="Password" class="form-control userNameInput input" name="password">
+                            </div>
+                            <div class="text-center">
+                                <input type="submit" class="btn loginBtn" value="Login">
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <a href="register">Register</a>
-            </div>
-            <!--second div included : text & form for login-->
-            <div class="form-login">
-                <p>
-                    <!--Span to wrap the text-->
-                    <span>Welcome back !</span>
-                </p>
-                <!--we will put actios later here-->
-                <form action="/login" method="POST">
-                    <input type="email" placeholder="E-mail adresse" name="email">
-                    <input type="password" placeholder="Password" name="password">
-                    <input type="submit" value="Login">
-                </form>
-            </div>
-            <!--Copy-rights-->
-            <div class="copyr">
-                <img src="{{ url_for('static',filename = 'rec/copy-rights.png')}}" alt="copy-rights">
-                <p>All rights are reserved - 2022 (GIIA)</p>
+                <!--Copy-rights-->
+                <div class="copyr">
+                    <p>&#169;All rights are reserved - 2022 (GIIA)</p>
+                </div>
+
+            
+                </header>
             </div>
         </body>
     </html>

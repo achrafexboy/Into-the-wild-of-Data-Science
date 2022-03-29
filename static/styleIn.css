@@ -273,9 +273,8 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 
-
 .loginForm{
-    width: 35%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -305,14 +304,15 @@ button, input[type="submit"], input[type="reset"] {
     margin-right: 5px;
 }
 
-.loginBtn{
+input.loginBtn{
     color: white;
     background-color: var(--second-color);
     border: 1px solid var(--second-color);
-    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    min-height: 40px;
 }
 
-.loginBtn:hover{
+input.loginBtn:hover{
     color: var(--main-color);
     outline: 0;
     box-shadow: 0 0 40px 40px white inset;
