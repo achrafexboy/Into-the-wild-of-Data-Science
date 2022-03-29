@@ -7,4 +7,6 @@ Avancement : <br>
   _ Login/Register <br>
   _ Data manipulation : <br>
     _ ( visualisation )<br>
-  Thank you
+  _ ( Missing values Code )<br>
+  _ ( Missing values page )<br>  
+    
