@@ -436,3 +436,21 @@ button, input[type="submit"], input[type="reset"] {
     background-color: var(--main-color);
     border: 1px solid var(--main-color);
 }
+
+/*home image*/
+
+.homeImgContainer img {
+    position: relative;
+    max-width: 60%;
+    animation: up-and-down 4s linear infinite;
+}
+
+@keyframes up-and-down {
+    0%,
+    100% {
+      top: 0;
+    }
+    50% {
+      top: -50px;
+    }
+  }
