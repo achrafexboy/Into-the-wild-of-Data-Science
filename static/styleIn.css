@@ -1,0 +1,438 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+
+/*
+Colors
+#273B98
+#273B98
+#5A88E8
+#414042
+*/
+
+:root {
+    --main-color: #273B98;
+    --second-color: #5A88E8;
+    --text-color: #414042;
+    --mainSpacing: 0.1rem;
+   }
+
+   html {
+    scroll-behavior: smooth;
+   }
+
+* {
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.8;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  
+
+  a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    text-decoration: none;
+}
+
+
+/*===================================/*
+/*Header*/
+
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 20px;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--second-color);
+}
+
+.navBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    list-style-type: none;
+}
+
+.navBarElement{
+    padding: 5px 15px;
+    color: var(--main-color);
+    font-weight: 500;
+    font-size: 1.2rem;
+    transition: 0.25s ease all;
+    position: relative;
+}
+
+.underLine{
+    position: relative;
+    padding: 5px 0;
+  }
+  
+  .underLine::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: var(--second-color);
+    transition: transform 300ms ease-in-out;
+    transform: scaleX(0);
+  }
+
+.navBarElement::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    height: 2px;
+    background-color: var(--second-color);
+    transition: transform 300ms ease-in-out;
+    transform: scaleX(0);
+  }
+
+.underLine:hover::before,
+.underLine:focus::before {
+  transform: scaleX(0.8);
+}
+
+.navBarElement:hover{
+    color: var(--second-color);
+}
+
+/*===================================/*
+/*Home*/
+
+.home{
+    min-height: 100vh;
+    margin: 5px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10%;
+}
+
+.homeTextContainer{
+    flex: 1;
+}
+
+.homeText{
+    width: 80%;
+}
+
+.homeTitle{
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--main-color);
+    line-height: 120%;
+    margin-bottom: 1.5rem;
+}
+
+.desc{
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.homeImgContainer{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.homeImg{
+    width: 70%;
+}
+
+.homeButtonsContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 75%;
+    margin-top: 2rem;
+}
+
+.btn {
+    text-transform: uppercase;
+    letter-spacing: var(--mainSpacing);
+    position: relative;
+    font-size: 1.1rem;
+    text-align: center;
+    width: 15rem;
+    margin: 20px 10px 5px 10px;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+.btnContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 0;
+  }
+.getStartedBtn{
+    color: white;
+    background-color: var(--second-color);
+    transition: all 0.3s ease;
+}
+
+
+.getStartedBtn:hover{
+    color: var(--second-color);
+    background-color: white;
+    border: 1px solid var(--second-color);
+    border: 1px solid var(--second-color);
+}
+
+.viewDemoBtn{
+    color: var(--main-color);
+    background-color: white;
+    border: 1px solid var(--main-color);
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.viewDemoBtn:hover{
+    color: #fff;
+    outline: 0; 
+    box-shadow: 0 0 40px 40px var(--main-color) inset;
+  }
+
+
+/*===================================/*
+/*About*/
+
+  .about{
+    min-height: 100vh;
+}
+
+
+/*===================================/*
+/*Contact*/
+
+  .contact{
+    min-height: 100vh;
+}
+
+
+/*===================================/*
+/*Footer*/
+
+
+
+/*===================================/*
+/*Login & Sign Up*/
+
+.formContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+    padding: 10rem;
+    background-color: hsla(221, 76%, 63%, 0.05)
+}
+
+.inputContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.fa-user, .fa-lock{
+    position: absolute;
+    left: 0.5rem;
+    top: 20%;
+    color: black;
+}
+
+
+
+.loginForm{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+}
+
+.input{
+    width: 100%;
+    padding: 0.6rem 0.4rem 0.6rem 2rem;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.checkForgotContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1.4rem;
+}
+
+.rememberMe{
+    margin-right: 5px;
+}
+
+.loginBtn{
+    color: white;
+    background-color: var(--second-color);
+    border: 1px solid var(--second-color);
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out
+}
+
+.loginBtn:hover{
+    color: var(--main-color);
+    outline: 0;
+    box-shadow: 0 0 40px 40px white inset;
+}
+
+
+.signUpBtn{
+    color: var(--main-color);
+    background-color: white;
+    border: 1px solid var(--main-color);
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.signUpBtn:hover{
+    color: #fff;
+    outline: 0;
+    box-shadow: 0 0 40px 40px var(--main-color) inset;
+  }
+
+  .registercontainer{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+  }
+
+
+/*===================================/*
+/*Drag and drop*/
+
+.dragAndDropConatiner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 95vh;
+}
+
+.dragAndDrop{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/*
+.dragArea{
+    border: 2px dashed var(--text-color);
+    height: 500px;
+    width: 700px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .dragArea.active{
+    border: 2px solid var(--main-color);
+  }
+  .dragArea .icon{
+    font-size: 100px;
+    color: var(--main-color);
+  }
+  .dragArea header{
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-color);
+  }
+  .dragArea span{
+    font-size: 25px;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 10px 0 15px 0;
+  }
+  .dragArea button{
+    padding: 10px 25px;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background: #273B98;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .dragArea img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+*/
+
+.upload-container {
+    position: relative;
+}
+.upload-container input {
+    border: 1px solid #92b0b3;
+    background: #f1f1f1;
+    outline: 2px dashed #92b0b3;
+    outline-offset: -10px;
+    padding: 100px 0px 100px 250px;
+    text-align: center !important;
+    width: 100%;
+    height: 100%;
+}
+ 
+.upload-container input:hover {
+    background: #ddd;
+}
+ 
+.upload-container:before {
+    position: absolute;
+    bottom: 50px;
+    left: 245px;
+    content: " (or) Drag and Drop files here. ";
+    color: #3f8188;
+    font-weight: 900;
+}
+ 
+.uploadBtn {
+    color: white;
+    background-color: var(--main-color);
+    border: 1px solid var(--main-color);
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf_8">
+        <title>Home page</title>
+        <link rel="stylesheet" href="../static/styleIn.css" type="text/css">
+    </head>
+    <body>
+        <div class="theContainer">
+            <header class="header">
+                <div class="logoContainer">
+                    <a href="{{ url_for('index') }}"><h1 class="logo">LoGo.</h1></a>
+                </div>
+                <nav class="navBarContainer">
+                    <ul class="navBar">
+                        <li class="underLine"><a href="#home" class="navBarElement">Home</a></li>
+                        <li class="underLine"><a href="#about" class="navBarElement">About</a></li>
+                        <li class="underLine"><a href="#contact" class="navBarElement">Contact</a></li>
+                        <li class="underLine"><a href="{{ url_for('login') }}" class="navBarElement">Login</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <section class="home" id="home">
+                <article class="homeTextContainer">
+                    <div class="homeText">
+                        <h1 class="homeTitle">
+                            What is Data Preprocessing?
+                        </h1>
+                        <p class="desc">
+                            Data preprocessing is a data mining technique that involves transforming raw data into an understandable format because Real-world data is often incomplete, inconsistent, and/or lacking in certain behaviors or trends.
+                        </p>
+                        <div class="homeButtonsContainer">
+                            <div class="btnContainer"><a href="./login.html" class="btn getStartedBtn">Get Started</a></div>
+                            <div class="btnContainer"><a href="#" class="btn viewDemoBtn">View Demo</a></div>
+                        </div>
+                    </div>
+                </article>
+                <article class="homeImgContainer">
+                    <img src="{{ url_for('static', filename='images/home.png') }}" alt="Home Image" class="homeImg">
+                </article>
+            </section>
+            <section class="about" id="about" style="background-color: rgb(243, 243, 243)">
+                <h1 style="text-align: center; font-size: 40px">Todo</h1>
+            </section>
+            <section class="contact" id="contact">
+                <h1 style="text-align: center; font-size: 40px">Todo</h1>
+            </section>
+        </div>
+    </body>
+</html>
