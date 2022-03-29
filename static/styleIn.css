@@ -251,7 +251,7 @@ button, input[type="submit"], input[type="reset"] {
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
+    min-height: 88vh;
     background-color: #fff;
     padding: 10rem;
     background-color: hsla(221, 76%, 63%, 0.05)
