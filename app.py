@@ -22,11 +22,11 @@ def succ():
     password = request.form.get("password")
     with sqlite3.connect("elements.db") as db:
       cur = db.cursor()
-      cur.execute("Select * from users where email= ? AND password = ?",(email,password))
+      cur.execute("Select * from users where email= ? AND password = ?",(email, password))
       rows = cur.fetchall()
-      if len(rows) == 0:
-          return redirect(url_for('login'))
-    return redirect(url_for('annexe'))
+    if len(rows) == 0:
+        return redirect(url_for('login'))
+    return redirect(url_for('annexe',session = True))
 
 
 
@@ -36,7 +36,7 @@ def register():
     rep.set_cookie('answer','42')
     return rep
 
-@app.route('/register', methods=["POST"])
+@app.route('/register', methods=["POST","GET"])
 def registration():
     email = request.form.get("email")
     password = request.form.get("password")
@@ -48,15 +48,17 @@ def registration():
 
 
 
-@app.route('/home')
-def annexe():
-    with sqlite3.connect("elements.db") as db:
-      db.row_factory = sqlite3.Row
-      cur = db.cursor()
-      c = cur.execute("select * from Track")
-      rows = [dict(row) for row in c.fetchall()]
-      db.commit()
-      return render_template('Annexe.html', Rows = rows)
+@app.route('/home/<session>', methods=["POST","GET"])
+def annexe(session = False):
+    if session :
+        with sqlite3.connect("elements.db") as db:
+            db.row_factory = sqlite3.Row
+            cur = db.cursor()
+            c = cur.execute("select * from Track")
+            rows = [dict(row) for row in c.fetchall()]
+            db.commit()
+        return render_template('Annexe.html', Rows = rows)
+    else : return redirect(url_for('login'))
 
 @app.route('/missingValues', methods=["POST", "GET"])
 def missingValues():
