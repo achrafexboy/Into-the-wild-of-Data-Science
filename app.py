@@ -4,6 +4,7 @@ from pickle import TRUE
 import sqlite3
 from flask import render_template, Flask, redirect, url_for, request, make_response, flash, abort
 from ai import resultDict, MissingValues, method_chosing, df
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -67,6 +68,7 @@ def annexe(session = True):
 @app.route('/missingValues', methods=["POST", "GET"])
 def missingValues():
     if request.method == 'POST':
+        new_df = pd.DataFrame()  # create a new dataframe
         if(request.form.get("rate")):
             rate = float(request.form.get("rate"))   
             method = request.form.get("method") #row or column delete
@@ -76,17 +78,29 @@ def missingValues():
             #print(categoricalMethod)
             #print("method: ", method)
             #print("rate: ", rate)
+
+            #Infos!!!!!!!!!!!!!!!!!
+            "if the user doesn't choose a method for numerical data, the method will be arbitrary"
+            #End of Infos
             if(numericalMethod == None or categoricalMethod == None):
                 flash("Chose a method for numirical and categorical data")
             else:
-                classTest = MissingValues(df, method, rate)
+                methods = []
+                #Infos!!!!!!!!!!!!!!!!!
+                "if the user chose to delete rows or columns we will ignore the other methods"
+                #End of Infos
+                if(method):
+                    methods = [numericalMethod, categoricalMethod]
+                else:
+                    methods = [numericalMethod, categoricalMethod]
+                classTest = MissingValues(df, methods, rate)
                 new_df = method_chosing(classTest)
             
-            if(new_df):
-                return render_template('missingValues.html', results = resultDict, finalResult = new_df.isnull().mean().to_dict())
-            else:
+            if(new_df.empty):
                 #flash("No missing values")
                 return render_template('missingValues.html', results = resultDict)
+            else:
+                return render_template('missingValues.html', results = resultDict, finalResult = new_df.isnull().mean().to_dict())
         else:
             flash("Enter a rate please")
             #print("error")   

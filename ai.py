@@ -11,10 +11,10 @@ df = titanic_data.copy()
 class MissingValues:
   
   #init function
-  def __init__(self, dataFrame, methode, rate = 0.1):
+  def __init__(self, dataFrame, methods, rate = 0.1):
     self.rate = rate
     self.dataFrame = dataFrame
-    self.methode = methode
+    self.methods = methods
 
     self.df_numeric = dataFrame.select_dtypes(include=[np.number])
     self.numeric_cols = self.df_numeric.columns.values
@@ -28,7 +28,7 @@ class MissingValues:
     self.missing_categorical_columns = []
     for column in self.df_categorical.columns:
        if self.df_categorical[column].isnull().mean() > self.rate:
-          self.missing_numeric_columns.append(column)
+          self.missing_categorical_columns.append(column)
   #End init function
 
 
@@ -74,7 +74,6 @@ class MissingValues:
     self.df_copy = self.dataFrame.copy()
     for column in self.missing_numeric_columns:
       eod_value = self.df_copy[column].mean() + 3 * self.df_copy[column].std()
-      median = self.df_copy[column].median()
       self.df_copy[column].fillna(eod_value, inplace=True)
     return self.df_copy
   #End "End of Distribution Imputation" methode
@@ -117,14 +116,15 @@ class MissingValues:
 
 
 def method_chosing(classTest):
-    if(classTest.methode == "row"): return classTest.impute_nan_row()
-    elif(classTest.methode == "column"): return classTest.impute_nan_column()
-    elif(classTest.methode == "mean"): return classTest.impute_nan_mean()
-    elif(classTest.methode == "median"): return classTest.impute_nan_median()
-    elif(classTest.methode == "eod"): return classTest.impute_nan_eod()
-    elif(classTest.methode == "arbitrary"): return classTest.impute_nan_arbitrary_value()
-    elif(classTest.methode == "mode"): return classTest.impute_nan_mode()
-    elif(classTest.methode == "arbitraryCat"): return classTest.impute_nan_arbitrary_columns()
+    for method in classTest.methods:
+      if(method == "row"): return classTest.impute_nan_row()
+      elif(method == "column"): return classTest.impute_nan_column()
+      elif(method == "mean"): return classTest.impute_nan_mean()
+      elif(method == "median"): return classTest.impute_nan_median()
+      elif(method == "eod"): return classTest.impute_nan_eod()
+      elif(method == "arbitrary"): return classTest.impute_nan_arbitrary_value()
+      elif(method == "mode"): return classTest.impute_nan_mode()
+      elif(method == "arbitraryCat"): return classTest.impute_nan_arbitrary_columns()
 
 
 
