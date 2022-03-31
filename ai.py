@@ -16,6 +16,7 @@ class MissingValues:
     self.dataFrame = dataFrame
     self.methods = methods
 
+    # Get the missing numerical columns
     self.df_numeric = dataFrame.select_dtypes(include=[np.number])
     self.numeric_cols = self.df_numeric.columns.values
     self.missing_numeric_columns = []
@@ -23,6 +24,7 @@ class MissingValues:
        if self.df_numeric[column].isnull().mean() > self.rate:
           self.missing_numeric_columns.append(column)
     
+    # Get the missing categorical columns
     self.df_categorical = dataFrame.select_dtypes(exclude=[np.number])
     self.categorical_cols = self.df_categorical .columns.values
     self.missing_categorical_columns = []
@@ -117,14 +119,17 @@ class MissingValues:
 
 def method_chosing(classTest):
     for method in classTest.methods:
-      if(method == "row"): return classTest.impute_nan_row()
-      elif(method == "column"): return classTest.impute_nan_column()
-      elif(method == "mean"): return classTest.impute_nan_mean()
-      elif(method == "median"): return classTest.impute_nan_median()
-      elif(method == "eod"): return classTest.impute_nan_eod()
-      elif(method == "arbitrary"): return classTest.impute_nan_arbitrary_value()
-      elif(method == "mode"): return classTest.impute_nan_mode()
-      elif(method == "arbitraryCat"): return classTest.impute_nan_arbitrary_columns()
+      print("====method====")
+      print(method)
+      if(method == "row"): classTest.dataFrame = classTest.impute_nan_row()
+      elif(method == "column"): classTest.dataFrame = classTest.impute_nan_column()
+      elif(method == "mean"): classTest.dataFrame = classTest.impute_nan_mean()
+      elif(method == "median"): classTest.dataFrame = classTest.impute_nan_median()
+      elif(method == "eod"): classTest.dataFrame = classTest.impute_nan_eod()
+      elif(method == "arbitrary"): classTest.dataFrame = classTest.impute_nan_arbitrary_value()
+      elif(method == "mode"): classTest.dataFrame = classTest.impute_nan_mode()
+      elif(method == "arbitraryCat"): classTest.dataFrame = classTest.impute_nan_arbitrary_columns()
+    return classTest.dataFrame  
 
 
 

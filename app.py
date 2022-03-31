@@ -10,6 +10,8 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = '998273675bfbebc4d8be595e'
 
+new_df = pd.DataFrame()  # create a new dataframe
+
 @app.route('/index')
 @app.route('/')
 def index():
@@ -68,15 +70,14 @@ def annexe(session = True):
 @app.route('/missingValues', methods=["POST", "GET"])
 def missingValues():
     if request.method == 'POST':
-        new_df = pd.DataFrame()  # create a new dataframe
         if(request.form.get("rate")):
             rate = float(request.form.get("rate"))   
             method = request.form.get("method") #row or column delete
             numericalMethod = request.form.get("numericalMethod") # mean median eod or arbitrary for numerical data
             categoricalMethod = request.form.get("categoricalMethod") # mode or arbitrary for categorical data
-            #print(numericalMethod)
-            #print(categoricalMethod)
-            #print("method: ", method)
+            print(numericalMethod)
+            print(categoricalMethod)
+            print("method: ", method)
             #print("rate: ", rate)
 
             #Infos!!!!!!!!!!!!!!!!!
@@ -89,14 +90,19 @@ def missingValues():
                 #Infos!!!!!!!!!!!!!!!!!
                 "if the user chose to delete rows or columns we will ignore the other methods"
                 #End of Infos
-                if(method):
+                if(method != None):
                     methods = [method]
                     classTest = MissingValues(df, methods, rate)
                     new_df = method_chosing(classTest)
+                    print('Numerical: ', classTest.missing_numeric_columns)
+                    print('Categorical: ', classTest.missing_categorical_columns)
                 else:
                     methods = [numericalMethod, categoricalMethod]
+                    print("methods array: ", methods)
                     classTest = MissingValues(df, methods, rate)
                     new_df = method_chosing(classTest)
+                    print('Numerical: ', classTest.missing_numeric_columns)
+                    print('Categorical: ', classTest.missing_categorical_columns)
             
             if(new_df.empty):
                 #flash("No missing values")
