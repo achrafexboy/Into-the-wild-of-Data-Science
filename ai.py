@@ -89,7 +89,7 @@ class MissingValues:
     elif(max < 10000000): return 9999999
 
 
-def methode_chosing(classTest):
+def method_chosing(classTest):
     if(classTest.methode == "row"): return classTest.impute_nan_row()
     elif(classTest.methode == "column"): return classTest.impute_nan_column()
     elif(classTest.methode == "mean"): return classTest.impute_nan_mean()
@@ -98,17 +98,17 @@ def methode_chosing(classTest):
 
 
 
-print("type: ", type(df.isnull().mean()))
-print(df.isnull().mean()[0])
+#print("type: ", type(df.isnull().mean()))
+#print(df.isnull().mean()[0])
 
 resultDict =  df.isnull().mean().to_dict()
 
-print("type: ", type(resultDict))
+#print("type: ", type(resultDict))
 
-print("dict: ", resultDict)
+#print("dict: ", resultDict)
 
-for key in resultDict:
-   print(key, '->', resultDict[key])
+#for key in resultDict:
+#   print(key, '->', resultDict[key])
 
 
 results = df.isnull().mean()

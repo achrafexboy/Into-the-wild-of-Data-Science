@@ -1,25 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf_8">
-        <title>Home page</title>
-        <link rel="stylesheet" href="../static/styleIn.css" type="text/css">
-    </head>
-    <body>
-        <div class="theContainer">
-            <header class="header">
-                <div class="logoContainer">
-                    <a href="{{ url_for('index') }}"><h1 class="logo">LoGo.</h1></a>
-                </div>
-                <nav class="navBarContainer">
-                    <ul class="navBar">
-                        <li class="underLine"><a href="#home" class="navBarElement">Home</a></li>
-                        <li class="underLine"><a href="#about" class="navBarElement">About</a></li>
-                        <li class="underLine"><a href="#contact" class="navBarElement">Contact</a></li>
-                        <li class="underLine"><a href="{{ url_for('login') }}" class="navBarElement">Login</a></li>
-                    </ul>
-                </nav>
-            </header>
+{% extends "base.html" %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block content %}
             <section class="home" id="home">
                 <article class="homeTextContainer">
                     <div class="homeText">
@@ -45,6 +30,4 @@
             <section class="contact" id="contact">
                 <h1 style="text-align: center; font-size: 40px">Todo</h1>
             </section>
-        </div>
-    </body>
-</html>
+{% endblock %}

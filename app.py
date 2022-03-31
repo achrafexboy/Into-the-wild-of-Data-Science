@@ -1,8 +1,9 @@
 # from crypt import methods
 from json import load
+from pickle import TRUE
 import sqlite3
 from flask import render_template, Flask, redirect, url_for, request, make_response, abort
-from ai import resultDict, MissingValues, methode_chosing, df
+from ai import resultDict, MissingValues, method_chosing, df
 app = Flask(__name__)
 
 @app.route('/index')
@@ -48,8 +49,8 @@ def registration():
 
 
 
-@app.route('/home/<session>', methods=["POST","GET"])
-def annexe(session = False):
+@app.route('/home', methods=["POST","GET"])
+def annexe(session = True):
     if session :
         with sqlite3.connect("elements.db") as db:
             db.row_factory = sqlite3.Row
@@ -63,13 +64,18 @@ def annexe(session = False):
 @app.route('/missingValues', methods=["POST", "GET"])
 def missingValues():
     if request.method == 'POST':
-        methode = request.form.get("methode")
-        rate = float(request.form.get("rate"))
-        print("methode: ", methode)
-        print("rate: ", rate)
-        classTest = MissingValues(df, methode, rate)
-        new_df = methode_chosing(classTest)
-        return render_template('missingValues.html', results = resultDict, finalResult = new_df.isnull().mean().to_dict())
+        if(request.form.get("rate")):
+            method = request.form.get("method") #row or column delete
+            numericalMethod = request.form.get("numericalMethod") # mean median eod or arbitrary for numerical data
+            categoricalMethod = request.form.get("categoricalMethod") # mode or arbitrary for categorical data
+            print("=====================>>",request.form.get("rate") == True)
+            rate = float(request.form.get("rate"))   
+            #print("method: ", method)
+            #print("rate: ", rate)
+            classTest = MissingValues(df, method, rate)
+            new_df = method_chosing(classTest)
+            return render_template('missingValues.html', results = resultDict, finalResult = new_df.isnull().mean().to_dict())
+        else: print("error")   
     return render_template('missingValues.html', results = resultDict)
 
 

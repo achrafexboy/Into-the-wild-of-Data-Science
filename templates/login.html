@@ -1,29 +1,10 @@
-<!DOCTYPE html>
-    <html>
-        <head>
-            <meta charset="utf-8">
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-            <link rel="stylesheet" href="../static/styleIn.css" type="text/css">
-            <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Montserrat:ital@1&display=swap" rel="stylesheet">
-        </head>
-        <body>
-            <!--our first div included : logo(DS) and paragraph-->
-            <div class="theContainer">
-                <header class="header">
-                    <div class="logoContainer">
-                        <a href="{{ url_for('index') }}"><h1 class="logo">LoGo.</h1></a>
-                    </div>
-                    <nav class="navBarContainer">
-                        <ul class="navBar">
-                            <li class="underLine"><a href="#home" class="navBarElement">Home</a></li>
-                            <li class="underLine"><a href="#about" class="navBarElement">About</a></li>
-                            <li class="underLine"><a href="#contact" class="navBarElement">Contact</a></li>
-                            <li class="underLine"><a href="{{ url_for('login') }}" class="navBarElement">Login</a></li>
-                        </ul>
-                    </nav>
-                </header>
+{% extends "base.html" %}
+
+{% block title %}
+Login Page
+{% endblock %}
+
+{% block content %}
                 <div class="form-login">
                     <div class="formContainer">
                         <h1 class="text-center">Welcome back !</h1>
@@ -31,9 +12,11 @@
                         <br>
                         <form action="/login" class="form-signin loginForm" method="POST">
                             <div class="inputContainer">
+                                <i class="fa-solid fa-user"></i>
                                 <input type="email" placeholder="E-mail adresse" class="form-control userNameInput input" name="email">
                             </div>
                             <div class="inputContainer">
+                                <i class="fa-solid fa-lock"></i>
                                 <input type="password" placeholder="Password" class="form-control userNameInput input" name="password">
                             </div>
                             <div class="text-center">
@@ -45,6 +28,4 @@
                 <div style="background-color: hsla(221, 76%, 63%, 0.05);">
                     <p>&#169; All rights are reserved - 2022 (GIIA)</p>
                 </div>
-            </div>
-        </body>
-    </html>
+{% endblock %}
