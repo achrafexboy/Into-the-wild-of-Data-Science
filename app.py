@@ -2,9 +2,12 @@
 from json import load
 from pickle import TRUE
 import sqlite3
-from flask import render_template, Flask, redirect, url_for, request, make_response, abort
+from flask import render_template, Flask, redirect, url_for, request, make_response, flash, abort
 from ai import resultDict, MissingValues, method_chosing, df
+
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = '998273675bfbebc4d8be595e'
 
 @app.route('/index')
 @app.route('/')
@@ -65,17 +68,28 @@ def annexe(session = True):
 def missingValues():
     if request.method == 'POST':
         if(request.form.get("rate")):
+            rate = float(request.form.get("rate"))   
             method = request.form.get("method") #row or column delete
             numericalMethod = request.form.get("numericalMethod") # mean median eod or arbitrary for numerical data
             categoricalMethod = request.form.get("categoricalMethod") # mode or arbitrary for categorical data
-            print("=====================>>",request.form.get("rate") == True)
-            rate = float(request.form.get("rate"))   
+            #print(numericalMethod)
+            #print(categoricalMethod)
             #print("method: ", method)
             #print("rate: ", rate)
-            classTest = MissingValues(df, method, rate)
-            new_df = method_chosing(classTest)
-            return render_template('missingValues.html', results = resultDict, finalResult = new_df.isnull().mean().to_dict())
-        else: print("error")   
+            if(numericalMethod == None or categoricalMethod == None):
+                flash("Chose a method for numirical and categorical data")
+            else:
+                classTest = MissingValues(df, method, rate)
+                new_df = method_chosing(classTest)
+            
+            if(new_df):
+                return render_template('missingValues.html', results = resultDict, finalResult = new_df.isnull().mean().to_dict())
+            else:
+                #flash("No missing values")
+                return render_template('missingValues.html', results = resultDict)
+        else:
+            flash("Enter a rate please")
+            #print("error")   
     return render_template('missingValues.html', results = resultDict)
 
 

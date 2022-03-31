@@ -9,17 +9,26 @@ df = titanic_data.copy()
 
 #Methode class
 class MissingValues:
+  
   #init function
   def __init__(self, dataFrame, methode, rate = 0.1):
     self.rate = rate
     self.dataFrame = dataFrame
     self.methode = methode
+
     self.df_numeric = dataFrame.select_dtypes(include=[np.number])
     self.numeric_cols = self.df_numeric.columns.values
-    self.missing_columns = []
+    self.missing_numeric_columns = []
     for column in self.df_numeric.columns:
        if self.df_numeric[column].isnull().mean() > self.rate:
-          self.missing_columns.append(column)
+          self.missing_numeric_columns.append(column)
+    
+    self.df_categorical = dataFrame.select_dtypes(exclude=[np.number])
+    self.categorical_cols = self.df_categorical .columns.values
+    self.missing_categorical_columns = []
+    for column in self.df_categorical.columns:
+       if self.df_categorical[column].isnull().mean() > self.rate:
+          self.missing_numeric_columns.append(column)
   #End init function
 
 
@@ -33,14 +42,19 @@ class MissingValues:
   # Column Imputation methode
   def impute_nan_column(self):
     self.df_copy = self.dataFrame.copy()
-    self.df_copy = self.df_copy.dropna(axis=1)
+    rate_columns = []
+    for column in self.df_copy.columns:
+       if self.df_copy[column].isnull().mean() > self.rate:
+          self.rate_columns.append(column)
+
+    self.df_copy = self.df_copy.drop(columns=rate_columns, axis=1)
     return self.df_copy
   #End column Imputation methode
 
   # Mean methode
   def impute_nan_mean(self):
     self.df_copy = self.dataFrame.copy()
-    for column in self.missing_columns:
+    for column in self.missing_numeric_columns:
       mean = self.df_copy[column].mean()
       self.df_copy[column].fillna(mean, inplace=True)
     return self.df_copy
@@ -49,7 +63,7 @@ class MissingValues:
   # median methode
   def impute_nan_median(self):
     self.df_copy = self.dataFrame.copy()
-    for column in self.missing_columns:
+    for column in self.missing_numeric_columns:
       median = self.df_copy[column].median()
       self.df_copy[column].fillna(median, inplace=True)
     return self.df_copy
@@ -58,7 +72,7 @@ class MissingValues:
   # End of Distribution Imputation methode
   def impute_nan_eod(self):
     self.df_copy = self.dataFrame.copy()
-    for column in self.missing_columns:
+    for column in self.missing_numeric_columns:
       eod_value = self.df_copy[column].mean() + 3 * self.df_copy[column].std()
       median = self.df_copy[column].median()
       self.df_copy[column].fillna(eod_value, inplace=True)
@@ -68,16 +82,29 @@ class MissingValues:
   # Arbitrary Value Imputation methode
   def impute_nan_arbitrary_value(self):
     self.df_copy = self.dataFrame.copy()
-    for column in self.missing_columns:
+    for column in self.missing_numeric_columns:
       max = self.df_copy[column].max()
       arb_val = self.arb_value(max)
       self.df_copy[column].fillna(arb_val, inplace=True)
     return self.df_copy
   #End Arbitrary Value Imputation methode
 
-  # Regression Model Imputation methode ##TODO##
-  #def impute_nan_regression(self):
-  #End Regression Model Imputation methode
+  # mode methode
+  def impute_nan_mode(self):
+    self.df_copy = self.dataFrame.copy()
+    for column in self.missing_categorical_columns:
+      self.df_copy[column].fillna(self.df_copy[column].mode().iloc[0], inplace=True)
+    return self.df_copy
+  #End mode methode
+
+  # Arbitrary value columns methode
+  def impute_nan_arbitrary_columns(self):
+    self.df_copy = self.dataFrame.copy()
+    for column in self.missing_categorical_columns:
+      self.df_copy[column].fillna("Misssing_value", inplace=True)
+    return self.df_copy
+  #End Arbitrary value columns methode
+
 
   def arb_value(self, max):
     if(max < 10): return 9
@@ -95,6 +122,9 @@ def method_chosing(classTest):
     elif(classTest.methode == "mean"): return classTest.impute_nan_mean()
     elif(classTest.methode == "median"): return classTest.impute_nan_median()
     elif(classTest.methode == "eod"): return classTest.impute_nan_eod()
+    elif(classTest.methode == "arbitrary"): return classTest.impute_nan_arbitrary_value()
+    elif(classTest.methode == "mode"): return classTest.impute_nan_mode()
+    elif(classTest.methode == "arbitraryCat"): return classTest.impute_nan_arbitrary_columns()
 
 
 
