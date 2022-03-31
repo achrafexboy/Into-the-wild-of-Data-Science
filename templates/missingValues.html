@@ -21,6 +21,9 @@
             tr:nth-child(even) {
               background-color: #dddddd;
             }
+            .container-fluid{
+              margin-top: 30px;
+            }
         </style>
         <link rel="stylesheet" href="../static/styleIn.css" type="text/css">
     </head>
@@ -37,10 +40,26 @@
                 </table>
             </div>
             <form action="/missingValues" method="POST">
+              <div class="container-fluid">
                 <div class="form-group">
                   <label for="rate">Rate</label>
                   <input type="number" class="form-control" id="rate" name="rate" aria-describedby="rate" placeholder="rate" min="0" max="1" step="0.0001">
                 </div>
+              </div>
+              <div class="container-fluid">
+                <div class="radioContainer text-center">
+                  <h2>Fill numerical data with:</h2>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="methode" id="inlineRadio1" value="row">
+                    <label class="form-check-label" for="inlineRadio1">Rows</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="methode" id="inlineRadio2" value="column">
+                    <label class="form-check-label" for="inlineRadio2">Columns</label>
+                  </div>
+                </div>
+              </div>
+              <div class="container-fluid">
                 <div class="radioContainer text-center">
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="methode" id="inlineRadio1" value="mean">
@@ -52,9 +71,15 @@
                   </div>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="methode" id="inlineRadio3" value="eod">
-                    <label class="form-check-label" for="inlineRadio3">eod</label>
+                    <label class="form-check-label" for="inlineRadio3">EOD</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="methode" id="inlineRadio3" value="arbitrary">
+                    <label class="form-check-label" for="inlineRadio3">Arbitrary</label>
                   </div>
                 </div>
+              </div>
+                
                 <br>
                 <div class="confirmContainer text-center">
                   <button type="submit" class="btn btn-primary ">Confirm</button>
