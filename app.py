@@ -111,3 +111,10 @@ def missingValues():
 
 if __name__ == "__main__" :
     app.run(debug=True)
+
+
+#==========================#
+#Notes#
+"Adding a column for varibles type in the page"
+#==========================#
+#==========================#
