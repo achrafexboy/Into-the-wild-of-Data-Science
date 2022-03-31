@@ -131,7 +131,7 @@ def method_chosing(classTest):
 #print("type: ", type(df.isnull().mean()))
 #print(df.isnull().mean()[0])
 
-resultDict =  df.isnull().mean().to_dict()
+results =  df.isnull().mean().to_dict()
 
 #print("type: ", type(resultDict))
 
@@ -141,5 +141,5 @@ resultDict =  df.isnull().mean().to_dict()
 #   print(key, '->', resultDict[key])
 
 
-results = df.isnull().mean()
-data = ""
+#results = df.isnull().mean()
+#data = ""

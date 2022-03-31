@@ -8,13 +8,21 @@ Login Page
         <div class="container">
             <div class="row">
                 <table>
-                    {%for key in results%}
+                    {%for key in results.isnull().mean().to_dict()%}
                         <tr> 
                             <td> {{ key }} </td>
-                            <td class="col-md-2">{{ results[key]|round(4) }}</td>
+                            <td class="col-md-2">{{ results.isnull().mean().to_dict()[key]|round(4) }}</td>
                         </tr>
                         {% endfor %}
                 </table>
+            </div>
+            <div class="row alert alert-secondary" role="alert">
+              <div class="col-sm">
+                <strong>Shape:</strong>
+              </div>
+              <div class="col-sm">
+                {{ results.shape }}
+              </div>
             </div>
             <form action="/missingValues" method="POST">
               <div class="container-fluid">
@@ -25,14 +33,14 @@ Login Page
               </div>
               <div class="container-fluid">
                 <div class="radioContainer text-center">
-                  <h2>Delete columns or rows</h2>
+                  <h2>Delete columns or rows (optional)</h2>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="method" id="inlineRadio1" value="row">
-                    <label class="form-check-label" for="inlineRadio1">Rows</label>
+                    <input class="form-check-input" type="checkbox" name="method" id="inlineCheckbox1" value="row">
+                    <label class="form-check-label" for="inlineCheckbox1">Rows</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="method" id="inlineRadio2" value="column">
-                    <label class="form-check-label" for="inlineRadio2">Columns</label>
+                    <input class="form-check-input" type="checkbox" name="method" id="inlineCheckbox2" value="column">
+                    <label class="form-check-label" for="inlineCheckbox2">Columns</label>
                   </div>
                 </div>
               </div>
@@ -86,6 +94,14 @@ Login Page
                         </tr>
                         {% endfor %}
                 </table>
+            </div>
+            <div class="row alert alert-secondary" role="alert">
+              <div class="col-sm">
+                <strong>Shape:</strong>
+              </div>
+              <div class="col-sm">
+                {{ new_df.shape }}
+              </div>
             </div>
             {% endif %}
         </div>
