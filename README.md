@@ -9,4 +9,4 @@ Avancement : <br>
     _ ( visualisation )<br>
   _  Missing values Code <br>
   _  Missing values page <br>  
-    
+  _ Feature Scaling with streamLit ~ until we finish the main
