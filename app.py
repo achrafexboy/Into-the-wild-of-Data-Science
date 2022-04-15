@@ -103,12 +103,13 @@ def missingValues():
                     new_df = method_chosing(classTest)
                     print('Numerical: ', classTest.missing_numeric_columns)
                     print('Categorical: ', classTest.missing_categorical_columns)
+            return render_template('missingValues.html', results = df, finalResult = new_df.isnull().mean().to_dict(), new_df = new_df)
             
-            if(new_df.empty):
+            """if(new_df.empty):
                 #flash("No missing values")
                 return render_template('missingValues.html', results = df)
             else:
-                return render_template('missingValues.html', results = df, finalResult = new_df.isnull().mean().to_dict(), new_df = new_df)
+                return render_template('missingValues.html', results = df, finalResult = new_df.isnull().mean().to_dict(), new_df = new_df)"""
         else:
             flash("Enter a rate please")
             #print("error")   

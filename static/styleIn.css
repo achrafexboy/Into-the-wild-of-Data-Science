@@ -461,7 +461,7 @@ input.loginBtn:hover{
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 70vw ;
     margin: 10px 0;
   }
   
@@ -476,4 +476,18 @@ table {
   }
   .container-fluid{
     margin-top: 30px;
+  }
+
+
+  /*Annexe with method style*/
+
+.flexContainer{
+  display: flex;
+}
+
+
+  .methodContainer{
+    width: 60vw;
+    align-items: center;
+    justify-content: center;
   }

@@ -31,6 +31,8 @@ class MissingValues:
     for column in self.df_categorical.columns:
        if self.df_categorical[column].isnull().mean() > self.rate:
           self.missing_categorical_columns.append(column)
+
+    self.all_missing_columns = self.missing_numeric_columns + self.missing_categorical_columns
   #End init function
 
 
@@ -44,12 +46,8 @@ class MissingValues:
   # Column Imputation methode
   def impute_nan_column(self):
     self.df_copy = self.dataFrame.copy()
-    rate_columns = []
-    for column in self.df_copy.columns:
-       if self.df_copy[column].isnull().mean() > self.rate:
-          self.rate_columns.append(column)
 
-    self.df_copy = self.df_copy.drop(columns=rate_columns, axis=1)
+    self.df_copy = self.df_copy.drop(columns=self.all_missing_columns, axis=1)
     return self.df_copy
   #End column Imputation methode
 
