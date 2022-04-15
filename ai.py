@@ -1,13 +1,17 @@
 from unittest import result
 import seaborn as sns
 import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import RobustScaler
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import normalize
 
-#Get the data
+# Get the data
 titanic_data = sns.load_dataset('titanic')
 titanic_data.head()
 df = titanic_data.copy()
 
-#Methode class
+# Methode class
 class MissingValues:
   
   #init function
@@ -148,3 +152,54 @@ results =  df.isnull().mean().to_dict()
 
 #results = df.isnull().mean()
 #data = ""
+
+# Class data Transformation (Feature Scaling)
+class FeatureScaling:
+
+  # simple constructor 
+  def __init__(self, df):
+    self.df = df.select_dtypes(include = np.number)
+    # dataframe only numerical
+  # End unit
+  
+  # Z-score method u = x-u/s
+  def z_score(self,column_name):
+    col_new = np.array(self.df[column_name]).reshape(-1,1)
+    scaler = StandardScaler()
+    scaler.fit(col_new)
+    col_new = scaler.transform(col_new)
+    return col_new
+  # End Z-score
+
+  # Min-Max method [-1,1] ~> [a,b]
+  def Min_Max(self,column_name,min = 0,max = 1):
+    col_new = np.array(self.df[column_name]).reshape(-1,1)
+    scaler = MinMaxScaler((min,max))
+    scaler.fit(col_new)
+    col_new = scaler.transform(col_new)
+    return col_new
+
+  # Max-Absolute scaling Z = X / max(absX)
+  def MaxAbsoluteSc(self, column_name):
+    col_new = np.array(self.df[column_name]).reshape(-1,1)
+    return col_new/abs(col_new).max()
+
+  # unit length method Zi = Xi / ||X||
+  def unit_length(self, column_name,norm):
+    return normalize(np.array(self.df[column_name]).reshape(-1,1),norm,axis = 0)
+
+  # Mean standarization Z  = x-mean/(max-min)
+  def mean_std(self, column_name):
+    col = np.array(self.df[column_name]).reshape(-1,1)
+    return (col- col.mean())/(col.max()-col.min())
+
+  # Robust Scaling X = (x-median) / IQR
+  def Robust_scaler(self,column_name):
+    col_new = np.array(self.df[column_name]).reshape(-1,1)
+    scaler = RobustScaler()
+    scaler.fit(col_new)
+    col_new = scaler.transform(col_new)
+    return col_new
+  
+# End Definition
+  

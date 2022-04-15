@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feature Scaling</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/Annexe_css.css">
+    <link rel="stylesheet" href="../static/FScaling.css">
+</head>
+<body>
+    <div class="nav-bar">
+        <div class = "logo">
+           <img src="../static/rec/DS.png" alt="DS">
+           <p>Into the wild of data science</p>
+        </div>
+        <span>Version 1.0</span>
+     </div>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+           <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+              <div class="profil">
+                  <i class="fa-solid fa-user"></i>
+                  <span>Data Preprocessing</span>
+              </div>
+              <li class="active">
+                 <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa-solid fa-house"></i></span> Home</a>
+                 <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                 </ul>
+              </li>
+              <li>
+                 <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa-solid fa-broom"></i></span>Data Cleaning</a>
+                 <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                    <li><a href="/missingValues">Missing Values</a></li>
+                    <li><a href="#">Noisy data</a></li>
+                 </ul>
+              </li>
+              <li>
+                 <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa-solid fa-arrow-trend-down"></i></span>Data Reduction</a>
+              </li>
+              <li>
+                 <a href="#"> <span class="fa-stack fa-lg pull-left"><i class="fa-solid fa-shuffle"></i></span>Data transformation</a>
+              </li>
+              <li>
+                 <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa-solid fa-binoculars"></i></span>Overview</a>
+              </li>
+              <li>
+                 <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa-solid fa-brain"></i></span>ML model</a>
+              </li>
+              <li>
+                 <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa-solid fa-right-from-bracket"></i></span>LogOut</a>
+              </li>
+           </ul>
+        </div>
+
+        <div id="page-content-wrapper">
+           <div class="container-fluid xyz">
+              <div class="row">
+                 <div class="col-lg-12">
+                    
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+    <form class = "content-aside">
+        <p>
+            <span>Selected method :</span> 
+        </p>
+        <div>
+            <label class = "input-s">
+                <input type="radio" id="contactChoice1" name="Scaler" value="SS" checked = "checked">
+                <label for="contactChoice1">Standard scaling</label>
+                <span class = "checkmark"></span>
+            </label>
+
+            <label class = "input-s">
+                <input type="radio" id="contactChoice2" name="Scaler" value="MinMax">
+                <label for="contactChoice2">Min-Max scaling</label>
+                <span class = "checkmark"></span>
+            </label>
+
+            <label class = "input-s">
+                <input type="radio" id="contactChoice3" name="Scaler" value="RS">
+                <label for="contactChoice3">Robust Scaling</label>
+                <span class = "checkmark"></span>
+            </label>
+        
+            <label class="input-s">
+                <input type="radio" id="contactChoice4" name="Scaler" value="MaxAbs">
+                <label for="contactChoice4">Max Absolute scaler</label>
+                <span class = "checkmark"></span>
+            </label>
+
+            <label class="input-s">
+                <input type="radio" id="contactChoice5" name="Scaler" value="unitL">
+                <label for="contactChoice5">Unit Length scaler</label>
+                <span class = "checkmark"></span>
+            </label>
+
+            <label class="input-s">
+                <input type="radio" id="contactChoice6" name="Scaler" value="MeanStd">
+                <label for="contactChoice6">Mean Standarization</label>
+                <span class = "checkmark"></span>
+            </label>
+        </div>
+        <div>
+          <button type="submit">Choose</button>
+        </div>
+      </form>
+      
+    <!--Script bootstrap-->
+        <script src="../static/Annexe_js.js"></script>
+</body>
+</html>

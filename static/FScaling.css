@@ -1,0 +1,93 @@
+@charset "utf-8";
+
+body{
+    font-family: Montserrat;
+}
+.content-aside p span{
+    background-color: #000;
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+    z-index: -1;
+}
+.content-aside{
+    padding-left : 50px;
+}
+.content-aside p{
+    font-size : 25px;
+    color : #5F9EA0;
+}
+.input-s {
+display: block;
+position: relative;
+padding-left: 35px;
+margin-bottom: 12px;
+cursor: pointer;
+font-size: 22px;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.input-s input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 25px;
+width: 25px;
+background-color: #eee;
+border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.input-s:hover input ~ .checkmark {
+background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.input-s input:checked ~ .checkmark {
+background-color: #5F9EA0;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.input-s input:checked ~ .checkmark:after {
+display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.input-s .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+button[type="submit"]{
+    border: 0;
+    font-family: Montserrat;
+    font-size: 16px;
+    border-radius: 20px;
+    padding: 5px 10px;
+    background-color: #5F9EA0;
+    color : #fff;
+}
+.content-All{
+    float:left;
+}
