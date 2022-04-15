@@ -1,11 +1,7 @@
-{% extends "base.html" %}
-
-{% block title %}
-Login Page
-{% endblock %}
+{% extends "homeBase.html" %}
 
 {% block content %}
-        <div class="container">
+        <div class="container missingContainer">
             <div class="row">
                 <table>
                     {%for key in results.isnull().mean().to_dict()%}

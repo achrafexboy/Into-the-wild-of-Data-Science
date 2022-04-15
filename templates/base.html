@@ -9,7 +9,8 @@
         <!--Bootstrap icons-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" integrity="sha512-Oy+sz5W86PK0ZIkawrG0iv7XwWhYecM3exvUtMKNJMekGFJtVAhibhRPTpmyTj8+lJCkmWfnpxKgT2OopquBHA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./styleIn.css') }}">
+        
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./landingPage.css') }}">
         <title>
             {% block title %}
             {% endblock %}
@@ -18,9 +19,10 @@
     <body>
         <div class="theContainer">
             <header class="header">
-                <div class="logoContainer">
-                    <a href="{{ url_for('index') }}"><h1 class="logo">LoGo.</h1></a>
-                </div>
+                <div class = "logo">
+                    <img src="{{ url_for('static',filename = 'images/DS.png')}}" alt="DS">
+                    <p>Into the wild of data science</p>
+                 </div>
                 <nav class="navBarContainer">
                     <ul class="navBar">
                         <li class="underLine"><a href="#home" class="navBarElement">Home</a></li>

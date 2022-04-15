@@ -27,7 +27,7 @@ def login():
 def succ():
     email = request.form.get("email")
     password = request.form.get("password")
-    with sqlite3.connect("elements.db") as db:
+    with sqlite3.connect("database.db") as db:
       cur = db.cursor()
       cur.execute("Select * from users where email= ? AND password = ?",(email, password))
       rows = cur.fetchall()
@@ -43,28 +43,30 @@ def register():
     rep.set_cookie('answer','42')
     return rep
 
+"""
 @app.route('/register', methods=["POST","GET"])
 def registration():
     email = request.form.get("email")
     password = request.form.get("password")
-    with sqlite3.connect("elements.db") as db:
+    with sqlite3.connect("database.db") as db:
       cur = db.cursor()
       cur.execute("INSERT INTO users(email,password) VALUES(?,?)",(email,password))
       db.commit()
     return redirect(url_for('login'))
+"""
 
 
 
 @app.route('/home', methods=["POST","GET"])
 def annexe(session = True):
     if session :
-        with sqlite3.connect("elements.db") as db:
+        with sqlite3.connect("database.db") as db:
             db.row_factory = sqlite3.Row
             cur = db.cursor()
             c = cur.execute("select * from Track")
             rows = [dict(row) for row in c.fetchall()]
             db.commit()
-        return render_template('Annexe.html', Rows = rows)
+        return render_template('home.html', Rows = rows)
     else : return redirect(url_for('login'))
 
 @app.route('/missingValues', methods=["POST", "GET"])

@@ -56,6 +56,9 @@
     height:5vh;
     background:#fff;
     box-shadow:1px 1px 3px;
+    position: fixed;
+    top: 0;
+    z-index: 200;
  }
  .nav-bar .logo{
     margin-left: 100px;
@@ -83,7 +86,7 @@
 }
 .nav-bar span{
    text-transform: capitalize;
-   color:cadetblue;
+   color:#5f9ea0;
    font-size: 13px;
    margin-top: 13px;
    margin-right: 100px;
@@ -261,3 +264,49 @@
     }
  }
  
+
+ /***Table style***/
+
+.missingContainer{
+   z-index: -1;
+}
+
+table {
+   font-family: arial, sans-serif;
+   /*border-collapse: collapse;*/
+   width: 70vw ;
+   margin: 10px 0;
+ }
+ 
+ td, th {
+   border: 1px solid #dddddd;
+   text-align: left;
+   padding: 8px;
+ }
+ 
+ tr:nth-child(even) {
+   background-color: #dddddd;
+ }
+ .container-fluid{
+   margin-top: 30px;
+ }
+
+
+ /*Annexe with method style*/
+
+.flexContainer{
+ display: flex;
+}
+
+ .methodContainer{
+   width: 60vw;
+   align-items: center;
+   justify-content: center;
+ }
+
+ #sidebar-wrapper{
+   z-index: 100; /* bacch twli lfo9 on9do nclickiw 3liha*/
+   /*height: 150vh;*/
+   position: fixed;
+   top: 50px;
+ }
