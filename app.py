@@ -3,7 +3,7 @@ from json import load
 from pickle import TRUE
 import sqlite3
 from flask import render_template, Flask, redirect, url_for, request, make_response, flash, abort
-from ai import results, MissingValues, method_chosing, df
+from ai import results, MissingValues, method_chosing, df, DataReduction, method_chosing_data_red
 import pandas as pd
 
 app = Flask(__name__)
@@ -117,6 +117,25 @@ def missingValues():
             #print("error")   
     return render_template('missingValues.html', results = df)
 
+
+"""****Data Reduction****"""
+@app.route('/dataReduction', methods=["POST", "GET"])
+def dataReduction():
+    if request.method == 'POST':
+        if(request.form.get("n_components") and request.form.get("dataRedMethode")):
+            n_components = float(request.form.get("rate"))   
+            method = [request.form.get("dataRedMethode")] #row or column delete
+            print(n_components)
+            print("method: ", method)
+
+            classTest = DataReduction(df, ["pca"], "alive", n_components)
+            new_df = method_chosing_data_red(classTest)
+            return render_template('dataReduction.html', results = df, finalResult = new_df)
+
+        else:
+            flash("3mar kolch")
+            #print("error")   
+    return render_template('dataReduction.html', results = df)
 
 if __name__ == "__main__" :
     app.run(debug=True)

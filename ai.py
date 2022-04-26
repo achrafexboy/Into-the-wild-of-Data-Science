@@ -146,3 +146,61 @@ results =  df.isnull().mean().to_dict()
 
 #results = df.isnull().mean()
 #data = ""
+
+
+"""
+************* Data Reduction *************
+"""
+
+class DataReduction:
+  
+  #init function
+  def __init__(self, dataFrame, method, target, n_components):
+    self.df = dataFrame
+    self.method = method
+    self.target = target
+    self.n_components = n_components
+
+    #self.df_numeric = df.select_dtypes('number')
+  #End init function
+
+
+  # Row PCA methode
+  def pca(self):
+    from sklearn.decomposition import PCA
+    pca = PCA(n_components=self.n_components)
+    df = df.dropna(axis=0)
+    X = df.select_dtypes('number')
+    Xtr=pca.fit_transform(X)
+
+    # creating a list of column names
+    column_values = [ f'PC{(i+1)}' for i in range(Xtr.shape[1])]
+      
+    # creating the dataframe
+    self.df1 = pd.DataFrame(data = Xtr,
+                      columns = column_values)
+
+    print("alive1")
+    self.df1[self.target] = self.df[self.target]
+    print("alive2")
+
+    return self.df1
+  #End row PCA methode
+
+
+
+
+def method_chosing_data_red(classTest):
+    for method in classTest.method:
+      print("====method====")
+      print(method)
+      if(method == "pca"): classTest.df = classTest.pca()
+    return classTest.df1  
+
+
+#Using exemple :
+
+"""
+classTest = DataReduction(df, ["pca"], "alive", n_components)
+new_df = method_chosing_data_red(classTest)
+"""
