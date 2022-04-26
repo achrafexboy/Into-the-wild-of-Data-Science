@@ -16,7 +16,7 @@
             <tbody>
                 {% for column in results %}
                     <tr>
-                        {% for row in results.iterrows()%}
+                        {% for index, row in results.iterrows()%}
                             <td>{{row[column]}}</td>
                         {% endfor %}
                     </tr>
@@ -24,6 +24,7 @@
             </tbody>
         </table>
     </div>
+
 </div>
 
 
