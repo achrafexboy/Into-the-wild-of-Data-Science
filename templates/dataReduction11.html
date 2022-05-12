@@ -1,0 +1,31 @@
+{% extends "homeBase.html" %}
+
+{% block content %}
+<div class="container missingContainer">
+
+    <div class="all-table">
+        <table class = "table">
+            <thead class="table-light">
+                <tr>
+                    {% for i in results.columns %}
+                    <th scope="col">{{i}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <br>
+            <tbody>
+                {% for column in results %}
+                    <tr>
+                        {% for index, row in results.iterrows()%}
+                            <td>{{row[column]}}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+{% endblock %}

@@ -1,31 +1,57 @@
 {% extends "homeBase.html" %}
 
 {% block content %}
-<div class="container missingContainer">
 
-    <div class="all-table">
-        <table class = "table">
-            <thead class="table-light">
-                <tr>
-                    {% for i in results.columns %}
-                    <th scope="col">{{i}}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <br>
-            <tbody>
-                {% for column in results %}
-                    <tr>
-                        {% for index, row in results.iterrows()%}
-                            <td>{{row[column]}}</td>
-                        {% endfor %}
-                    </tr>
+
+        <div class="container missingContainer">
+            <!--<div class="all-table">
+                {% for table in data %}
+                  {{titles[loop.index]}}
+                  {{ table|safe }}
                 {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-</div>
-
+            </div>-->
+            <div class="row alert alert-secondary" role="alert">
+              <div class="col-sm">
+                <strong>Shape:</strong>
+              </div>
+              <div class="col-sm">
+                {{ results.shape }}
+              </div>
+            </div>
+            <form action="/dataReduction" method="POST">
+              <div class="container-fluid">
+                <div class="form-group">
+                  <label for="rate">Number of components</label>
+                  <input type="number" class="form-control" id="rate" name="n_components" aria-describedby="n_components" placeholder="n_components" min="1" max="{{ results.shape[1] }}" step="1">
+                </div>
+              </div>
+              <div class="container-fluid">
+                <div class="radioContainer text-center">
+                  <h2>Use :</h2>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="dataRedMethode" id="inlineRadio1" value="pca">
+                    <label class="form-check-label" for="inlineRadio1">PCA</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="dataRedMethode" id="inlineRadio2" value="fa">
+                    <label class="form-check-label" for="inlineRadio2">Factor Analysis</label>
+                  </div>
+                </div>
+              </div>
+                
+                <br>
+                <div class="confirmContainer text-center">
+                  <button type="submit" class="btn btn-primary ">Confirm</button>
+                </div>
+            </form>
+            {% if finalResult %}
+            <div class="all-table">
+              {% for table in finalResult %}
+                {{titles[loop.index]}}
+                {{ table|safe }}
+              {% endfor %}
+            </div>
+          {% endif %}
+      </div>
 
 {% endblock %}
