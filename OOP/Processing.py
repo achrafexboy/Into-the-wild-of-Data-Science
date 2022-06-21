@@ -44,7 +44,7 @@ class missing_values :
         -------
         Pandas dataframe with missing cases/columns dropped
         """    
-        data_copy = self.df.copy(deep = True)
+        data_copy = self.df.copy(deep = True) # deep st to True to not effect the copy
         data_copy = data_copy.dropna(axis = axis, inplace = False)
         return data_copy
         
@@ -59,7 +59,7 @@ class missing_values :
             if data_copy[i].isnull().sum()>0:
                 data_copy[i+'_is_NA'] = np.where(data_copy[i].isnull(),1,0)
             else:
-                warn("Column %s has no missing cases" % i)
+                warn("Column '%s' has no missing cases" % i)
                 
         return data_copy
 
@@ -89,7 +89,8 @@ class missing_values :
                     data_copy[i+'_impute_mean'] = data_copy[i].fillna(self.df[i].mean())
                 elif strategy=='median':
                     data_copy[i+'_impute_median'] = data_copy[i].fillna(self.df[i].median())
-                elif strategy=='mode':
+                elif strategy=='mode': # replaces missing values of a categorical variable by the mode 
+                                       # ... of non-missing cases of that variable.
                     data_copy[i+'_impute_mode'] = data_copy[i].fillna(self.df[i].mode()[0])
             else:
                 warn("Column %s has no missing" % i)
@@ -110,7 +111,7 @@ class missing_values :
         return data_copy            
         
 
-    def impute_NA_with_random(self, NA_col = [], random_state = 0):
+    def impute_NA_with_random(self, NA_col = [], random_state = 0, replace = False):
         """
         replacing the NA with random sampling 
         from the pool of available observations of the variable
@@ -120,7 +121,9 @@ class missing_values :
             if data_copy[i].isnull().sum()>0:
                 data_copy[i+'_random'] = data_copy[i]
                 # extract the random sample to fill the na
-                random_sample = data_copy[i].dropna().sample(data_copy[i].isnull().sum(), random_state = random_state)
+                # 1- Get a random samples with a length equal to number of missing value in the 'i' column
+                # 2 - indexing the samples to replace the nan values after
+                random_sample = data_copy[i].dropna().sample(data_copy[i].isnull().sum(), random_state = random_state, replace = replace)
                 random_sample.index = data_copy[data_copy[i].isnull()].index
                 data_copy.loc[data_copy[i].isnull(), str(i)+'_random'] = random_sample
             else:
@@ -176,7 +179,7 @@ class outliers_detection :
         return outlier_index, para
 
 
-    def outlier_detect_mean_std(self, col_name, z_score = 3):
+    def outlier_detect_mean_std(self, col_name, z_score = 3): # 6-sigma default
         """
         outlier detection by Mean and Standard Deviation Method (z-score method)
         If a value is a certain number(called threshold) of standard deviations away 
@@ -204,6 +207,7 @@ class outliers_detection :
         median_absolute_deviation = np.median([np.abs(y - median) for y in self.df[col_name]])
         modified_z_scores = pd.Series([0.6745 * (y - median) / median_absolute_deviation for y in self.df[col_name]])
         outlier_index = np.abs(modified_z_scores) > threshold
+        
         # index of outliers in the dataFrame
         # ... Remember to print it in the application
         print('Num of outlier detected:',outlier_index.value_counts()[1])
