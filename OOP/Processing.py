@@ -207,7 +207,7 @@ class outliers_detection :
         median_absolute_deviation = np.median([np.abs(y - median) for y in self.df[col_name]])
         modified_z_scores = pd.Series([0.6745 * (y - median) / median_absolute_deviation for y in self.df[col_name]])
         outlier_index = np.abs(modified_z_scores) > threshold
-        
+
         # index of outliers in the dataFrame
         # ... Remember to print it in the application
         print('Num of outlier detected:',outlier_index.value_counts()[1])
