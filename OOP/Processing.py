@@ -202,10 +202,19 @@ class outliers_detection :
         return outlier_index, para
 
 
-    def outlier_detect_MAD(self, col_name, threshold = 3):
+    def outlier_detect_MAD(self, col_name, threshold = 3): # The default threshold is 3 MAD.
+        """
+        outlier detection by Median Absolute Deviation Method (MAD)
+        The median of the residuals is calculated. Then, the difference is calculated between each historical value and this median. 
+        These differences are expressed as their absolute values, and a new median is calculated and multiplied by 
+        an empirically derived constant to yield the median absolute deviation (MAD). 
+        If a value is a certain number of MAD away from the median of the residuals, 
+        that value is classified as an outlier. 
+        (A.K.A) inverse of the cumulative distribution function of (3/4)  ≃ 0.67449
+        """
         median = self.df[col_name].median()
         median_absolute_deviation = np.median([np.abs(y - median) for y in self.df[col_name]])
-        modified_z_scores = pd.Series([0.6745 * (y - median) / median_absolute_deviation for y in self.df[col_name]])
+        modified_z_scores = pd.Series([0.67449 * (y - median) / median_absolute_deviation for y in self.df[col_name]])
         outlier_index = np.abs(modified_z_scores) > threshold
 
         # index of outliers in the dataFrame
