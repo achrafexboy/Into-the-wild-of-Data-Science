@@ -421,7 +421,7 @@ class Feature_Selection :
         self.df = dataFrame
         # init function, you need to to mentionned the split and other parameters of the methods previously if it necc 
         # ... otherwise it can be declared in the method it self, without using self !
-    def rf_importance(X_train, y_train, max_depth = 10, class_weight = None, n_estimators = 50, random_state = 0):
+    def rf_importance(self, X_train, y_train, max_depth = 10, class_weight = None, n_estimators = 50, random_state = 0):
         
         model = RandomForestClassifier( n_estimators = n_estimators, max_depth = max_depth,
                                         random_state = random_state, class_weight = class_weight,
