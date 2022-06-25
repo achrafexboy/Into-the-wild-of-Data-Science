@@ -363,7 +363,7 @@ class feature_scaling :
             scaler.fit(data_copy[i])
             data_copy[i+'_MinMaxScaler'] = scaler.transform(data_copy[i])
             print('Variable ' + i +' Q-Q plot')
-            self.diagnostic_plots(data_copy, str(i+'_MinMaxScaler')) 
+            # self.diagnostic_plots(data_copy, str(i+'_MinMaxScaler'))  # just because I need this method in feature selection part [25/06/2022]
         return data_copy
 
     def MaxAbsolute_transform(self, cols = []):
@@ -509,7 +509,9 @@ class Feature_Selection :
         corrmat.columns = ['feature1', 'feature2', 'corr']
     
         grouped_feature_ls = []
-        correlated_groups = []
+        # correlated_groups = []
+        column_names = corrmat.columns
+        correlated_groups = pd.DataFrame(columns = column_names) # it doesn't look that good in a list so we will return our corelated groups in a dataframe
         size_group = 0
         for feature in corrmat.feature1.unique():
             if feature not in grouped_feature_ls:
@@ -520,7 +522,9 @@ class Feature_Selection :
                     correlated_block.feature2.unique()) + [feature]
         
                 # append the block of features to the list
-                correlated_groups.append(correlated_block)
+
+                # correlated_groups.append(correlated_block)
+                correlated_groups = correlated_groups.append(correlated_block)
                 size_group += 1
         return correlated_groups, size_group
 
@@ -577,8 +581,8 @@ class Feature_Selection :
             roc_values.append(roc_auc_score(y_test, y_scored[:, 1]))
         roc_values = pd.Series(roc_values)
         roc_values.index = X_train.columns
-        print(roc_values.sort_values(ascending=False))
-        print(len(roc_values[roc_values > threshold]),'out of the %s featues are kept'% len(X_train.columns))
+        # print(roc_values.sort_values(ascending=False))
+        # print(len(roc_values[roc_values > threshold]),'out of the %s featues are kept'% len(X_train.columns))
         keep_col = roc_values[roc_values > threshold]
         return keep_col
             
