@@ -442,7 +442,7 @@ class Feature_Selection :
         return feature_rank
 
 
-    def gbt_importance(X_train, y_train, max_depth = 10, n_estimators = 50, random_state = 0):
+    def gbt_importance(self, X_train, y_train, max_depth = 10, n_estimators = 50, random_state = 0):
         
         model = GradientBoostingClassifier(n_estimators = n_estimators, max_depth = max_depth,
                                         random_state = random_state)
@@ -462,7 +462,7 @@ class Feature_Selection :
 
 
 
-    def constant_feature_detect(data,threshold=0.98):
+    def constant_feature_detect(self, data,threshold=0.98):
         """ 
         detect features that show the same value for the 
         majority/all of the observations (constant/quasi-constant features)
@@ -487,7 +487,7 @@ class Feature_Selection :
         return quasi_constant_feature
 
 
-    def corr_feature_detect(data, threshold = 0.8):
+    def corr_feature_detect(self, data, threshold = 0.8):
         """ 
         detect highly-correlated features of a Dataframe
         Parameters
@@ -525,7 +525,7 @@ class Feature_Selection :
         return correlated_groups, size_group
 
     ## Problem here [not solved : 25/05/2022][solved : 02/06/2022]
-    def mutual_info(X,y,select_k=10):
+    def mutual_info(self, X,y,select_k=10):
         
         if select_k >= 1:
             sel_ = SelectKBest(mutual_info_classif, k = select_k).fit(X,y)
@@ -541,7 +541,7 @@ class Feature_Selection :
         return col
         
 
-    def chi_square_test(X, y, select_k=10):
+    def chi_square_test(self, X, y, select_k=10):
     
         """
         Compute chi-squared stats between each non-negative feature and class.
@@ -559,7 +559,7 @@ class Feature_Selection :
         return col
         
 
-    def univariate_roc_auc(X_train,y_train,X_test,y_test,threshold):
+    def univariate_roc_auc(self, X_train,y_train,X_test,y_test,threshold):
     
         """
         First, it builds one decision tree per feature, to predict the target
@@ -583,7 +583,7 @@ class Feature_Selection :
         return keep_col
             
             
-    def univariate_mse(X_train,y_train,X_test,y_test,threshold):
+    def univariate_mse(self, X_train,y_train,X_test,y_test,threshold):
     
         """
         First, it builds one decision tree per feature, to predict the target
