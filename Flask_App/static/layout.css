@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,500;1,700;1,900&display=swap');
+
+:root {
+    --main-bg-color: #232323;
+    --second-bg-color: #202020;
+    --thras-color: #65706F;
+    --text-color: #DB674F;
+    --mainSpacing: 0.1rem;
+   }
+
+   html {
+    scroll-behavior: smooth;
+   }
+
+   
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+  body {
+    font-family: "Roboto", sans-serif;
+    color: #fff;
+    width: 100%;
+  }
+
+  body.active {
+    position: fixed;
+    overflow: hidden;
+  }
+
+/*Header*/
+.theContainer{
+  background: var(--main-bg-color);
+  min-height: 100vh;
+}
+
+.header{
+    
+    width: 100%;
+    position: relative;
+}
+
+.headerNavCenter{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--second-bg-color);
+}
+
+.headerNav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 50px;
+    height: 60px;
+    width: 95%;
+    background: transparent;
+    z-index: 5;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  .navBar{
+    padding: 5px;
+    margin: 10px 5px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: 700;
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 30vw;
+    height: 100vh;
+    margin: 0;
+    background-color: var(--thras-color);
+    overflow: hidden;
+    transform: translateX(100%);
+    z-index: 5;
+    transition: transform 0.3s ease-in-out, opacity 0.4s 0.4s ease-in-out;
+}
+
+.navBarContainer.active{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #72727271;
+}
+
+.navBar.active{
+  transform: translateX(0);
+}
+
+.navBar.active a{
+  opacity: 1;
+  transition: 0.3s 0.3s ease all;
+}
+
+.navBar a{
+  opacity: 0;
+  transition: 0.3s ease all;
+}
+
+.navBarElemnt{
+    padding: 5px;
+    margin: 15px 5px;
+    transition: 0.25s ease all;
+}
+
+.underLine{
+position: relative;
+padding: 5px 0;
+}
+
+.underLine::before {
+content: '';
+position: absolute;
+left: 0;
+right: 0;
+bottom: 0;
+height: 2px;
+background-color: var(--text-color);
+transition: transform 300ms ease-in-out;
+transform: scaleX(0);
+}
+
+.underLine:hover::before,
+.underLine:focus::before {
+transform: scaleX(0.8);
+}
+
+
+.navBar div:hover{
+  color: var(--text-color);
+}
+
+.box {
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 100;
+  display: block;
+  right: 10px;
+  top: 0;
+  background-color: transparent;
+}
+
+.box:hover{
+  background-color: transparent;
+}
+
+.container-lignes {
+width: 40px;
+height: 40px;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+pointer-events: none;
+}
+.ligne {
+position: absolute;
+border-radius: 10px;
+width: 40px;
+height: 5px;
+background: var(--text-color);
+}
+.box .ligne:nth-child(1){
+top: 0px;
+}
+.box .ligne:nth-child(2){
+top: 15px;
+}
+.box .ligne:nth-child(3){
+top: 30px;
+}
+
+.box .ligne:nth-child(1), .ligne:nth-child(3){
+transform: rotate(0deg);
+transition:   
+transform 0.3s ease-in-out,
+top 0.3s 0.3s ease-in-out;
+}
+.box .ligne:nth-child(2) {
+transition: opacity 0.3s 0.3s ease-in-out;
+}
+
+
+.box.active .ligne:nth-child(1){
+top: 25px;
+transform: rotate(45deg);
+transition:   
+top 0.3s  ease-in-out,
+transform 0.3s 0.3s ease-in-out;
+}
+.box.active .ligne:nth-child(2){
+transition: opacity 0.3s ease-in-out;
+opacity: 0;
+}
+.box.active .ligne:nth-child(3){
+top: 25px;
+transform: rotate(-45deg);
+transition:   
+top 0.3s  ease-in-out,
+transform 0.3s 0.3s ease-in-out;
+}
+
+.pageContent{
+  display: block;
+}
+
+.pageContent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 870px){
+
+  .navBar{
+    width: 100vw
+  }
+
+  .navBarContainer.active{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #7792b359;
+  }
+  
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Track</title>
+    <!-- <link rel="stylesheet" href="../static/home.css"> -->
+    <link rel="stylesheet" href="../static/layout.css">
+    <link rel="stylesheet" href="../static/homeStyle.css">
+    <link rel="stylesheet" href="../static/missingvalues.css">
+    <link rel="stylesheet" href="../static/featureScaling.css">
+    <style>
+            th, td {
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            }
+
+            tr:nth-child(even) {background-color: #f2f2f2;}
+          </style>
+    </head>
+    <body class="theBody">
+        <div class="theContainer">
+            <header class="header" id="header">
+                <div class="headerNavCenter">
+                    <div class="headerNav">
+                        <div class="logo">
+                            <div class="darkModeCenter">
+                                <h3>LoGo.</h3>
+                            </div>
+                        </div>
+                    <div class="navBarContainer">
+                        <nav class="navBar">
+                            <div class="underLine"><a href="/home" class="navBarElemnt">Home</a></div>
+                            <div class="underLine"><a href="/missingValues" class="navBarElemnt">Missing Values</a></div>
+                            <div class="underLine"><a href="/featureScaling" class="navBarElemnt">Feature Scaling</a></div>
+                            <div class="underLine"><a href="#contact" class="navBarElemnt">Features Selection</a></div>
+                            <div class="underLine"><a href="#contact" class="navBarElemnt">Data Reduction</a></div>
+                        </nav>
+                    </div>
+                    <button class="box">
+                            <div class="container-lignes">
+                              <div class="ligne"></div>
+                              <div class="ligne"></div>
+                              <div class="ligne"></div>
+                            </div>
+                    </button>
+                    </div>
+                </div>    
+            </header>
+            <div class="pageContent">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+        <script src="../static/app.js"></script>
+ </body>
+</html>
+            

@@ -363,7 +363,7 @@ class feature_scaling :
             scaler.fit(data_copy[i])
             data_copy[i+'_MinMaxScaler'] = scaler.transform(data_copy[i])
             print('Variable ' + i +' Q-Q plot')
-            self.diagnostic_plots(data_copy, str(i+'_MinMaxScaler')) 
+            # self.diagnostic_plots(data_copy, str(i+'_MinMaxScaler'))  # just because I need this method in feature selection part [25/06/2022]
         return data_copy
 
     def MaxAbsolute_transform(self, cols = []):
@@ -442,7 +442,7 @@ class Feature_Selection :
         return feature_rank
 
 
-    def gbt_importance(X_train, y_train, max_depth = 10, n_estimators = 50, random_state = 0):
+    def gbt_importance(self, X_train, y_train, max_depth = 10, n_estimators = 50, random_state = 0):
         
         model = GradientBoostingClassifier(n_estimators = n_estimators, max_depth = max_depth,
                                         random_state = random_state)
@@ -462,7 +462,7 @@ class Feature_Selection :
 
 
 
-    def constant_feature_detect(data,threshold=0.98):
+    def constant_feature_detect(self, data,threshold=0.98):
         """ 
         detect features that show the same value for the 
         majority/all of the observations (constant/quasi-constant features)
@@ -487,7 +487,7 @@ class Feature_Selection :
         return quasi_constant_feature
 
 
-    def corr_feature_detect(data, threshold = 0.8):
+    def corr_feature_detect(self, data, threshold = 0.8):
         """ 
         detect highly-correlated features of a Dataframe
         Parameters
@@ -509,7 +509,9 @@ class Feature_Selection :
         corrmat.columns = ['feature1', 'feature2', 'corr']
     
         grouped_feature_ls = []
-        correlated_groups = []
+        # correlated_groups = []
+        column_names = corrmat.columns
+        correlated_groups = pd.DataFrame(columns = column_names) # it doesn't look that good in a list so we will return our corelated groups in a dataframe
         size_group = 0
         for feature in corrmat.feature1.unique():
             if feature not in grouped_feature_ls:
@@ -520,12 +522,14 @@ class Feature_Selection :
                     correlated_block.feature2.unique()) + [feature]
         
                 # append the block of features to the list
-                correlated_groups.append(correlated_block)
+
+                # correlated_groups.append(correlated_block)
+                correlated_groups = correlated_groups.append(correlated_block)
                 size_group += 1
         return correlated_groups, size_group
 
     ## Problem here [not solved : 25/05/2022][solved : 02/06/2022]
-    def mutual_info(X,y,select_k=10):
+    def mutual_info(self, X,y,select_k=10):
         
         if select_k >= 1:
             sel_ = SelectKBest(mutual_info_classif, k = select_k).fit(X,y)
@@ -541,7 +545,7 @@ class Feature_Selection :
         return col
         
 
-    def chi_square_test(X, y, select_k=10):
+    def chi_square_test(self, X, y, select_k=10):
     
         """
         Compute chi-squared stats between each non-negative feature and class.
@@ -559,7 +563,7 @@ class Feature_Selection :
         return col
         
 
-    def univariate_roc_auc(X_train,y_train,X_test,y_test,threshold):
+    def univariate_roc_auc(self, X_train,y_train,X_test,y_test,threshold):
     
         """
         First, it builds one decision tree per feature, to predict the target
@@ -577,13 +581,13 @@ class Feature_Selection :
             roc_values.append(roc_auc_score(y_test, y_scored[:, 1]))
         roc_values = pd.Series(roc_values)
         roc_values.index = X_train.columns
-        print(roc_values.sort_values(ascending=False))
-        print(len(roc_values[roc_values > threshold]),'out of the %s featues are kept'% len(X_train.columns))
+        # print(roc_values.sort_values(ascending=False))
+        # print(len(roc_values[roc_values > threshold]),'out of the %s featues are kept'% len(X_train.columns))
         keep_col = roc_values[roc_values > threshold]
         return keep_col
             
             
-    def univariate_mse(X_train,y_train,X_test,y_test,threshold):
+    def univariate_mse(self, X_train,y_train,X_test,y_test,threshold):
     
         """
         First, it builds one decision tree per feature, to predict the target
