@@ -10,19 +10,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/home.css">
+    <link rel="stylesheet" href="../static/humb_menu.css">
     </head>
     <body>
-        <div class="nav-bar">
-            <div class = "logo">
-               <img src="{{ url_for('static',filename = 'images/DS.png')}}" alt="DS">
-               <p>Into the wild of data science</p>
+               <div class="headerNavCenter">
+                  <div class="headerNav">
+                      <div class="logo">
+                        <img src="{{ url_for('static',filename = 'images/DS.png')}}" alt="DS">
+                        <p class="logoText">Into the wild of data science</p>
+                      </div>
+                  <nav class="navBar">
+                      <div class="underLine"><a href="#header" class="navBarElemnt">Home</a></div>
+                      <div class="underLine"><a href="#about" class="navBarElemnt">About me</a></div>
+                      <div class="underLine"><a href="#projects" class="navBarElemnt">Projects</a></div>
+                      <div class="underLine"><a href="#contact" class="navBarElemnt">Contact</a></div>
+                  </nav>
+                  <button class="box">
+                          <div class="container-lignes">
+                            <div class="ligne"></div>
+                            <div class="ligne"></div>
+                            <div class="ligne"></div>
+                          </div>
+                  </button>
+               </div>
             </div>
-            <span>Version 1.0</span>
-         </div>
                  <!-- bs-example-navbar-collapse-1 -->
-              <div id="wrapper">
+              <!-- <div id="wrapper"> -->
                  <!-- Sidebar -->
-                 <div id="sidebar-wrapper">
+                 <!-- <div id="sidebar-wrapper">
                     <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
                        <div class="profil">
                            <i class="fa-solid fa-user"></i>
@@ -56,7 +71,7 @@
                           <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa-solid fa-right-from-bracket"></i></span>LogOut</a>
                        </li>
                     </ul>
-                 </div>
+                 </div> -->
       
                  <div id="page-content-wrapper">
                     <div class="container-fluid xyz">
@@ -70,6 +85,7 @@
               </div>
               {% block content %}
               {% endblock %}
+              <script src="./javascript/app.js"></script>
  </body>
 </html>
             

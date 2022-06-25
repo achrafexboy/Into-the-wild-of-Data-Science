@@ -1,32 +1,17 @@
-{% extends "homeBase.html" %}
+{% extends "layout.html" %}
 
 {% block content %}
-        
-        <!-- End new items -->
-        <div class="content-aside">
-        <div class="title-1">
-            <h1>Data Description</h1>
-            <p>Data set sous forme d'un tableau pour visualiser clairement les données.</p>
-        </div>
-        <div class="all-table">
-            <table class = "table">
-                <thead class="table-light">
-                    <tr>
-                        {% for i in Rows[0].keys() %}
-                        <th scope="col">{{i}}</th>
-                        {% endfor %}
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for row in Rows %}
-                        <tr>
-                            {% for i in row.keys() %}
-                            <td>{{row[i]}}</td>
-                            {% endfor %}
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        </div>
+            <h1 class="pageTitle">Data Description</h1>
+            {% for table in data %}
+            {{ table|safe }}
+            {% endfor %}
+            <style>
+                table {
+                    border-collapse: collapse;
+                    min-height: 70vh;
+                    display: inline-block;
+                    min-width: 70vw;
+                    overflow: auto;
+                    }
+            </style>
 {% endblock %}

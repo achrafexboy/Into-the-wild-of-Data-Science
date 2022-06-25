@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block content %}
+              <h1 class="pageTitle">Features Scaling</h1>
+              <div class="featuresScalingContent">
+                <div class="featuresScalingBefore">
+                    {% for table in dataBefore %}
+                    {{ table|safe }}
+                    {% endfor %} 
+                </div>
+              </div>
+            <form action="/featureScaling" method="POST">
+              <div class="container-fluid">
+                <div class="columnName">
+                  <label for="select-choice">Chose a column(just numerical columns):</label>
+                  <select name="columnName" id="select-choice">
+                    {% for column in columns %}
+                    <option value="{{ column }}">{{ column }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              
+
+               <div class="container-fluid">
+                <div class="methods">
+                  <label for="select-choice">Chose a method:</label>
+                  <select name="method" id="select-choice">
+                    <option value="z_score">z_score</option>
+                    <option value="Min_Max">Min_Max</option>
+                    <option value="MaxAbsoluteSc">MaxAbsoluteSc</option>
+                    <option value="unit_length">unit_length</option>
+                    <option value="mean_std">mean_std</option>
+                  </select>
+                </div>
+              </div>
+
+              <br>
+                <div class="confirmContainer text-center">
+                  <button type="submit" class="btn">Confirm</button>
+                </div>
+            </form>
+            {% if dataAfter %}
+            <div class="featuresScalingAfter">
+              {% for table in dataAfter %}
+                {{ table|safe }}
+              {% endfor %} 
+            </div>
+            {% endif %}
+            <style>
+                table {
+                    border-collapse: collapse;
+                    min-height: 70vh;
+                    display: inline-block;
+                    min-width: 70vw;
+                    overflow: auto;
+                    }
+            </style>
+{% endblock %}

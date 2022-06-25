@@ -1,0 +1,6 @@
+seaborn
+numpy
+pandas
+sklearn
+Flask
+Flask-SQLAlchemy
