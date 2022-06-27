@@ -230,7 +230,7 @@ As a result, filter methods are suited for a first step quick screen and removal
 
 - PCA projection
 
-- SVD projection
+- LDA projection
 
 
 
