@@ -175,7 +175,7 @@ As we can see, Normalization - Standardization and Min-Max method will compress 
 
 ### 3.2 Feature Transformation
 
-#### 3.4.2 How to Handle Feature Transformation
+#### 3.2.1 How to Handle Feature Transformation
 
 | Method                     | Definition                                               |
 | -------------------------- | -------------------------------------------------------- |
