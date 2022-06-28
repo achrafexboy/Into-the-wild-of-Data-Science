@@ -10,7 +10,7 @@ def load_lottieurl(url):
 
 lottie_coding1 = load_lottieurl("https://assets3.lottiefiles.com/packages/lf20_qp1q7mct.json")
 lottie_coding2 = load_lottieurl("https://assets10.lottiefiles.com/packages/lf20_lw4fol0h.json")
-lottie_coding3 = load_lottieurl("https://assets3.lottiefiles.com/packages/lf20_ri7tiddf.json")
+lottie_coding3 = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_zhga5klv.json")
 lottie_coding4 = load_lottieurl("https://assets8.lottiefiles.com/private_files/lf30_zd4ppbmb.json")
 
 def load_view():

@@ -1,6 +1,18 @@
+<div align="center">
+  <a href="https://github.com/AmraniMohammed/machine-translation">
+    <img src="./Flask_App/static/images/DS.png" alt="Logo" width="100">
+  </a>
+
+  <h3 align="center">Processing API</h3>
+
+  <p align="center">
+    Open source API for Data Preprocessing
+  </p>
+</div>
+
 # A Brief presentation about the folders in this repo
 
-You can find here 3 folders ( Flask_App, OOP and Streamlit_App) :
+You can find here 3 main folders ( Flask_App, OOP and Streamlit_App) :
 
 ## 1. Flask app
 
@@ -279,6 +291,11 @@ As a result, filter methods are suited for a first step quick screen and removal
 
 
 
+
+------
+<h2 style="color : #e67e22;">Our final application</h2>
+
+![](./src/Deploy_API.gif)
 
 ------
 

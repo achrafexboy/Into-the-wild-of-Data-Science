@@ -2,3 +2,4 @@ app.py
 appS.py
 AppSt.py
 *.csv
+.env

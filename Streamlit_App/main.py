@@ -4,7 +4,7 @@ import utils as utl
 import subprocess
 from PIL import Image
 from streamlit_lottie import st_lottie
-from views import about, contactUs, home,LogIn,SignUp,App
+from views import about, contactUs, home, LogIn, SignUp, App
 
 # DB connexion
 import sqlite3
