@@ -1,3 +1,47 @@
+# A Brief presentation about the folders in this repo
+
+You can find here 3 folders ( Flask_App, OOP and Streamlit_App) :
+
+## 1. Flask app
+
+In this folder, you can find a web application developed by using HTML, CSS, and Javascript for the frontend part and Flask for the backend.
+This application uses our API to make the preprocessing task very simple and easy for everyone even for someone who knows nothing about preprocessing.
+In order to use this app, you will need to install the requirments.txt file and then run the application, you can follow these commands to do this.
+
+1. You need first to install the dependencies in requirements.txt
+   ```sh
+   pip install -r requirements.txt
+   ```
+3. You can then run the application
+   ```sh
+   python app.py
+   ```
+
+## 2. OOP
+Here the magic hapen, in this folder you can find the Processing API in the file Processing.py, NoteBook_testing.ipynb, Viz.py and the dataset
+For the Processing file you can find all the classes with there methods.
+
+In the NoteBook_testing file,  you will find here documentation that shows you how to use all the methods and explain how all the methods work with very detailed comments by using the dataset.xlsx file.
+
+And finally, you can use the Viz file to visualize your data in a very claire and easy way.
+
+## 3. Streamlit_App
+
+In this folder, you can find a web application developed by using streamlit.
+This application uses our API to make the preprocessing task very simple and easy for everyone even for someone who knows nothing about preprocessing, and it makes visualization very easy for you by using our Viz API.
+
+
+In order to use this app, you will need to install the requirments.txt file and then run the application, you can follow these commands to do this.
+
+1. You need first to install the dependencies in requirements.txt
+   ```sh
+   pip install -r requirements.txt
+   ```
+3. You can then run the application
+   ```sh
+   streamlit run main.py
+   ```
+
 # A Brief presentation about API processing
 
 Data preprocessing is the art/science of converting data to the best way possible, which involve an elegant blend of domain expertise, intuition and mathematics.
