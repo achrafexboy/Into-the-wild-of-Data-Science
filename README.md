@@ -293,7 +293,7 @@ As a result, filter methods are suited for a first step quick screen and removal
 
 
 ------
-<h2 style="color : #e67e22;">Our final application</h2>
+<h2 color="#e67e22">Our final application</h2>
 
 ![](./src/Deploy_API.gif)
 
